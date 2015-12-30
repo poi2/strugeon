@@ -7,11 +7,11 @@ p
   strong Email:
   = @investor.email
 p
-  strong Password:
-  = @investor.password
-p
   strong Birth:
   = @investor.birth
+p
+  strong Tickets:
+  = self_tickets_list @investor
 
 = link_to 'Edit', edit_investor_path(@investor)
 '|

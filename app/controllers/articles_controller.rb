@@ -15,16 +15,19 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @innovator_list = get_innovator_list
   end
 
   # GET /articles/1/edit
   def edit
+    @innovator_list = get_innovator_list
   end
 
   # POST /articles
   # POST /articles.json
   def create
     @article = Article.new(article_params)
+    set_innovators
 
     respond_to do |format|
       if @article.save
@@ -40,6 +43,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    set_innovators
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -67,8 +71,17 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
+    def set_innovators
+      ids = article_params["innovator_ids"].map(&:to_i).select{|i| i > 0}.sort
+      @article.innovators = Innovator.where(:id => ids)
+    end
+
+    def get_innovator_list
+      Innovator.all.map{|i| [i.name, i.id]}
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :target_amount, :closed_at)
+      params.require(:article).permit(:title, :description, :target_amount, :closed_at, {:innovator_ids => []})
     end
 end

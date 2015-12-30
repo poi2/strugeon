@@ -69,6 +69,6 @@ class InnovatorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def innovator_params
-      params.require(:innovator).permit(:name, :email, :password, :birth, :description, :url)
+      params.require(:innovator).permit(:name, :email, :password, :password_confirmation, :birth, :description, :url)
     end
 end

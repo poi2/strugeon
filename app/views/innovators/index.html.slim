@@ -5,10 +5,10 @@ table
     tr
       th Name
       th Email
-      th Password
       th Birth
       th Description
       th Url
+      th Articles
       th
       th
       th
@@ -18,10 +18,10 @@ table
       tr
         td = innovator.name
         td = innovator.email
-        td = innovator.password
         td = innovator.birth
-        td = innovator.description
+        td = index_description innovator
         td = innovator.url
+        td = self_article_list innovator
         td = link_to 'Show', innovator
         td = link_to 'Edit', edit_innovator_path(innovator)
         td = link_to 'Destroy', innovator, data: {:confirm => 'Are you sure?'}, :method => :delete

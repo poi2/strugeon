@@ -7,9 +7,6 @@ p
   strong Email:
   = @innovator.email
 p
-  strong Password:
-  = @innovator.password
-p
   strong Birth:
   = @innovator.birth
 p
@@ -18,6 +15,9 @@ p
 p
   strong Url:
   = @innovator.url
+  p
+    strong Articles:
+    = index_description @innovator
 
 = link_to 'Edit', edit_innovator_path(@innovator)
 '|

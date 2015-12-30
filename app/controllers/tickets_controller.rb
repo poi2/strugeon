@@ -15,6 +15,7 @@ class TicketsController < ApplicationController
   # GET /tickets/new
   def new
     @ticket = Ticket.new
+    @article_list = get_article_list
   end
 
   # GET /tickets/1/edit
@@ -65,6 +66,10 @@ class TicketsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_ticket
       @ticket = Ticket.find(params[:id])
+    end
+
+    def get_article_list
+      Article.all.map{|a| [a.title, a.id]}
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

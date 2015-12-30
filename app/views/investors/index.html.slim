@@ -5,8 +5,8 @@ table
     tr
       th Name
       th Email
-      th Password
       th Birth
+      th Tichets
       th
       th
       th
@@ -16,8 +16,8 @@ table
       tr
         td = investor.name
         td = investor.email
-        td = investor.password
         td = investor.birth
+        td = self_tickets_list investor
         td = link_to 'Show', investor
         td = link_to 'Edit', edit_investor_path(investor)
         td = link_to 'Destroy', investor, data: {:confirm => 'Are you sure?'}, :method => :delete

@@ -5,13 +5,16 @@ p
   = @article.title
 p
   strong Description:
-  = @article.description
+  = index_description @article
 p
   strong Target amount:
   = @article.target_amount
 p
   strong Closed at:
   = @article.closed_at
+p
+  strong Innovators:
+  = self_innovator_list @article
 
 = link_to 'Edit', edit_article_path(@article)
 '|
