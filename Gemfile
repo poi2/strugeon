@@ -55,7 +55,7 @@ group :development, :test do
   gem 'binding_of_caller'
 
   # detect darty ruby syntax
-  gem 'rubocop'
+  # gem 'rubocop'
   # detect N+1
   gem 'bullet'
 end
