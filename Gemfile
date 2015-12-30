@@ -7,6 +7,7 @@ gem 'rails', '4.2.5'
 gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -33,6 +34,10 @@ gem 'bcrypt', '~> 3.1.7'
 # gem 'capistrano-rails', group: :development
 gem 'slim-rails'
 
+# Twitter Bootstrap
+# gem 'twitter-bootswatch-rails'
+# gem 'twitter-bootswatch-rails-helpers'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
@@ -48,6 +53,11 @@ group :development, :test do
   gem 'better_errors'
   # better_errorsの画面上にirb/pry(PERL)を表示する
   gem 'binding_of_caller'
+
+  # detect darty ruby syntax
+  gem 'rubocop'
+  # detect N+1
+  gem 'bullet'
 end
 
 group :test do
@@ -61,4 +71,7 @@ group :development do
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # remove assets logs from rails server log
+  gem 'quiet_assets'
 end
