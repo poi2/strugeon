@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(version: 20151230103726) do
     t.integer "innovator_id", null: false
   end
 
+  add_index "articles_innovators", ["article_id", "innovator_id"], name: "index_articles_innovators_on_article_id_and_innovator_id"
+  add_index "articles_innovators", ["innovator_id", "article_id"], name: "index_articles_innovators_on_innovator_id_and_article_id"
+
   create_table "innovators", force: :cascade do |t|
     t.string   "name"
     t.string   "email"
