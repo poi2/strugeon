@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @investor.name
+p
+  strong Email:
+  = @investor.email
+p
+  strong Password:
+  = @investor.password
+p
+  strong Birth:
+  = @investor.birth
+
+= link_to 'Edit', edit_investor_path(@investor)
+'|
+= link_to 'Back', investors_path

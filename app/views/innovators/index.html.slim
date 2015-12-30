@@ -1,0 +1,31 @@
+h1 Listing innovators
+
+table
+  thead
+    tr
+      th Name
+      th Email
+      th Password
+      th Birth
+      th Description
+      th Url
+      th
+      th
+      th
+
+  tbody
+    - @innovators.each do |innovator|
+      tr
+        td = innovator.name
+        td = innovator.email
+        td = innovator.password
+        td = innovator.birth
+        td = innovator.description
+        td = innovator.url
+        td = link_to 'Show', innovator
+        td = link_to 'Edit', edit_innovator_path(innovator)
+        td = link_to 'Destroy', innovator, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Innovator', new_innovator_path

@@ -1,0 +1,25 @@
+h1 Listing investments
+
+table
+  thead
+    tr
+      th Ticked
+      th Investor
+      th Canceled at
+      th
+      th
+      th
+
+  tbody
+    - @investments.each do |investment|
+      tr
+        td = investment.ticked_id
+        td = investment.investor_id
+        td = investment.canceled_at
+        td = link_to 'Show', investment
+        td = link_to 'Edit', edit_investment_path(investment)
+        td = link_to 'Destroy', investment, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Investment', new_investment_path

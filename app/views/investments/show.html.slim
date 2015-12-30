@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Ticked:
+  = @investment.ticked_id
+p
+  strong Investor:
+  = @investment.investor_id
+p
+  strong Canceled at:
+  = @investment.canceled_at
+
+= link_to 'Edit', edit_investment_path(@investment)
+'|
+= link_to 'Back', investments_path

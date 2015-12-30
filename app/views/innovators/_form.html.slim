@@ -1,0 +1,27 @@
+= form_for @innovator do |f|
+  - if @innovator.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@innovator.errors.count, "error")} prohibited this innovator from being saved:"
+      ul
+        - @innovator.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :email
+    = f.text_field :email
+  .field
+    = f.label :password
+    = f.text_field :password
+  .field
+    = f.label :birth
+    = f.date_select :birth
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :url
+    = f.text_field :url
+  .actions = f.submit

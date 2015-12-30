@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @innovator.name
+p
+  strong Email:
+  = @innovator.email
+p
+  strong Password:
+  = @innovator.password
+p
+  strong Birth:
+  = @innovator.birth
+p
+  strong Description:
+  = @innovator.description
+p
+  strong Url:
+  = @innovator.url
+
+= link_to 'Edit', edit_innovator_path(@innovator)
+'|
+= link_to 'Back', innovators_path

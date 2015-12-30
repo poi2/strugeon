@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  resources :investments
+  resources :tickets
+  resources :articles
+  resources :investors
+  resources :innovators
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
