@@ -47,6 +47,11 @@ group :development, :test do
   gem 'pry-stack_explorer' # スタックをたどれる
   gem 'awesome_print'
 
+  gem 'rspec-rails'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
+  gem 'database_cleaner'
+
   # use console on web browser (localhost:3000/console)
   gem 'web-console', '~> 2.0'
   # エラー画面をわかりやすく整形してくれる
@@ -61,8 +66,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'rspec-rails'
-  gem 'factory_girl_rails'
 end
 
 group :development do
