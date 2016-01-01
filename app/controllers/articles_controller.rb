@@ -29,6 +29,7 @@ class ArticlesController < ApplicationController
     @article = Article.new(article_params)
     set_innovators
 
+    update_image
     respond_to do |format|
       if @article.save
         format.html { redirect_to @article, notice: 'Article was successfully created.' }
@@ -44,6 +45,8 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1.json
   def update
     set_innovators
+
+    update_image
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -78,6 +81,14 @@ class ArticlesController < ApplicationController
 
     def get_innovator_list
       Innovator.all.map{|i| [i.name, i.id]}
+    end
+
+    def update_image
+      upload_img = params["article"]["cover"]
+      if upload_img.present?
+        image = Image.new(article_id: @article.id, title: upload_img.original_filename, img: upload_img.read)
+        @article.image = image
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

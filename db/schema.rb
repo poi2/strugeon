@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151230103726) do
+ActiveRecord::Schema.define(version: 20160101101441) do
 
   create_table "articles", force: :cascade do |t|
     t.string   "title"
@@ -29,6 +29,12 @@ ActiveRecord::Schema.define(version: 20151230103726) do
 
   add_index "articles_innovators", ["article_id", "innovator_id"], name: "index_articles_innovators_on_article_id_and_innovator_id"
   add_index "articles_innovators", ["innovator_id", "article_id"], name: "index_articles_innovators_on_innovator_id_and_article_id"
+
+  create_table "images", force: :cascade do |t|
+    t.integer "article_id"
+    t.string  "title"
+    t.binary  "img"
+  end
 
   create_table "innovators", force: :cascade do |t|
     t.string   "name"

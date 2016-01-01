@@ -16,6 +16,9 @@
     = f.label :target_amount
     = f.number_field :target_amount
   .field
+    = f.label :cover
+    = f.file_field :cover
+  .field
     = f.label :innovator_ids
     = f.select :innovator_ids, @innovator_list, {}, {multiple: true}
   .field
