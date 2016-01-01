@@ -1,29 +1,76 @@
+= javascript_include_tag "/javascripts/minigrid.min.js"
+
 h1 Listing articles
 
-table
-  thead
-    tr
-      th Title
-      th Description
-      th Target amount
-      th Closed at
-      th Innovators
-      th
-      th
-      th
+div.grid
+  - @articles.each do |article|
+    - 12.times do |i|
+      div.elem-root.grid-item
+        span
+          = image_tag "/images/firewood_on_forest.gif", class: "elem-img"
+        span = article.title
+        div.elem-bar
+        span = trancate_description article.description, 45
+        div.elem-bar
+        span = self_innovator_list article
+        div.elem-bar
+        span.elem-btn
+          = link_to 'Show', article, class: "btn btn-success"
+          = link_to 'Edit', edit_article_path(article), class: "btn btn-info"
+          = link_to 'Destroy', article, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "btn btn-danger"
 
-  tbody
-    - @articles.each do |article|
-      tr
-        td = article.title
-        td = index_description article
-        td = number_to_currency article.target_amount
-        td = article.closed_at
-        td = self_innovator_list article
-        td = link_to 'Show', article
-        td = link_to 'Edit', edit_article_path(article)
-        td = link_to 'Destroy', article, data: {:confirm => 'Are you sure?'}, :method => :delete
 
 br
 
 = link_to 'New Article', new_article_path
+
+css:
+  .elem-root {
+    width: 200px;
+    border: 1px solid #ccc;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  .elem-img {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+  }
+  .elem-bar {
+    padding: 0 10px 8px 10px;
+    border-bottom: 1px solid #ccc;
+  }
+  .elem-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .elem-btn > a:not(:last-child) {
+    margin-right: 3px;
+  }
+  .grid {
+    margin: 0 auto;
+  }
+  .smartphone {
+    width: 96% !important;
+  }
+
+javascript:
+  (function(){
+    function grid() {
+      if($(window).width() <= 460){
+        $(".elem-root").addClass("smartphone");
+      } else {
+        $(".elem-root").removeClass("smartphone");
+      }
+      minigrid({
+        container: '.grid',
+        item: '.grid-item',
+        gutter: 6
+      });
+    }
+
+    window.addEventListener('resize', function(){
+      grid();
+    });
+    grid();
+  })();
