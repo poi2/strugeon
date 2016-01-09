@@ -1,0 +1,29 @@
+h1 Listing deals
+
+table
+  thead
+    tr
+      th Title
+      th Target amount
+      th Description
+      th Start at
+      th End at
+      th
+      th
+      th
+
+  tbody
+    - @deals.each do |deal|
+      tr
+        td = deal.title
+        td = deal.target_amount
+        td = deal.description
+        td = deal.start_at
+        td = deal.end_at
+        td = link_to 'Show', deal
+        td = link_to 'Edit', edit_deal_path(deal)
+        td = link_to 'Destroy', deal, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Deal', new_deal_path
