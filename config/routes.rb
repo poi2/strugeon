@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :inventories
   resources :deal_units
   resources :deals
   resources :admin_users
