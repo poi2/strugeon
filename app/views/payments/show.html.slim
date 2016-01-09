@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Cart:
+  = @payment.cart_id
+p
+  strong Auth code:
+  = @payment.auth_code
+p
+  strong Payment method:
+  = @payment.payment_method
+
+= link_to 'Edit', edit_payment_path(@payment)
+'|
+= link_to 'Back', payments_path
