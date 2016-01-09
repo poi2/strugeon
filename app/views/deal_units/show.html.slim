@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Deal:
+  = @deal_unit.deal_id
+p
+  strong Title:
+  = @deal_unit.title
+p
+  strong Description:
+  = @deal_unit.description
+p
+  strong Price:
+  = @deal_unit.price
+p
+  strong Reward:
+  = @deal_unit.reward
+
+= link_to 'Edit', edit_deal_unit_path(@deal_unit)
+'|
+= link_to 'Back', deal_units_path
