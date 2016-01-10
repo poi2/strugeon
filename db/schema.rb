@@ -11,65 +11,114 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160101101441) do
+ActiveRecord::Schema.define(version: 20160110165715) do
 
-  create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "target_amount"
-    t.datetime "closed_at"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  create_table "articles_innovators", id: false, force: :cascade do |t|
-    t.integer "article_id",   null: false
-    t.integer "innovator_id", null: false
-  end
-
-  add_index "articles_innovators", ["article_id", "innovator_id"], name: "index_articles_innovators_on_article_id_and_innovator_id"
-  add_index "articles_innovators", ["innovator_id", "article_id"], name: "index_articles_innovators_on_innovator_id_and_article_id"
-
-  create_table "images", force: :cascade do |t|
-    t.integer "article_id"
-    t.string  "title"
-    t.binary  "img"
-  end
-
-  create_table "innovators", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.date     "birth"
-    t.text     "description"
-    t.string   "url"
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.string   "aasm_state"
+    t.string   "role",            null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "password_digest"
   end
 
-  create_table "investments", force: :cascade do |t|
-    t.integer  "ticked_id"
-    t.integer  "investor_id"
-    t.datetime "deleted_at"
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+
+  create_table "carts", force: :cascade do |t|
+    t.integer  "user_id",    null: false
+    t.integer  "amount",     null: false
+    t.string   "aasm_state"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "carts", ["user_id"], name: "index_carts_on_user_id"
+
+  create_table "deal_units", force: :cascade do |t|
+    t.integer  "deal_id",     null: false
+    t.string   "title",       null: false
+    t.text     "description", null: false
+    t.integer  "price",       null: false
+    t.string   "reward",      null: false
+    t.string   "aasm_state"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
-  create_table "investors", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.date     "birth"
+  add_index "deal_units", ["deal_id"], name: "index_deal_units_on_deal_id"
+
+  create_table "deals", force: :cascade do |t|
+    t.string   "title",           null: false
+    t.string   "permalink",       null: false
+    t.integer  "front_runner_id", null: false
+    t.integer  "target_amount",   null: false
+    t.text     "description",     null: false
+    t.string   "aasm_state"
+    t.datetime "start_at",        null: false
+    t.datetime "end_at",          null: false
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
-    t.string   "password_digest"
   end
 
-  create_table "tickets", force: :cascade do |t|
-    t.integer  "article_id"
-    t.integer  "price"
-    t.text     "reword"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  add_index "deals", ["front_runner_id"], name: "index_deals_on_front_runner_id"
+  add_index "deals", ["permalink"], name: "index_deals_on_permalink", unique: true
+
+  create_table "front_runners", force: :cascade do |t|
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.text     "description"
+    t.string   "aasm_state"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
   end
+
+  add_index "front_runners", ["email"], name: "index_front_runners_on_email", unique: true
+
+  create_table "inventories", force: :cascade do |t|
+    t.integer  "deal_unit_id", null: false
+    t.integer  "stock",        null: false
+    t.integer  "ready",        null: false
+    t.integer  "sold",         null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "inventories", ["deal_unit_id"], name: "index_inventories_on_deal_unit_id"
+
+  create_table "orders", force: :cascade do |t|
+    t.integer  "cart_id",      null: false
+    t.integer  "deal_unit_id", null: false
+    t.integer  "quantity",     null: false
+    t.string   "aasm_state"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "orders", ["cart_id"], name: "index_orders_on_cart_id"
+  add_index "orders", ["deal_unit_id"], name: "index_orders_on_deal_unit_id"
+
+  create_table "payments", force: :cascade do |t|
+    t.integer  "cart_id",        null: false
+    t.string   "auth_code"
+    t.string   "payment_method", null: false
+    t.string   "aasm_state"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "payments", ["cart_id"], name: "index_payments_on_cart_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",            null: false
+    t.string   "email",           null: false
+    t.string   "password_digest", null: false
+    t.string   "aasm_state"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
 
 end
