@@ -8,5 +8,6 @@ class CreateInventories < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :inventories, :deal_unit_id
   end
 end

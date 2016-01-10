@@ -8,5 +8,7 @@ class CreateOrders < ActiveRecord::Migration
 
       t.timestamps null: false
     end
+    add_index :orders, :cart_id
+    add_index :orders, :deal_unit_id
   end
 end
