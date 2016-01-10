@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :front_runners
   resources :orders
   resources :payments
   resources :carts

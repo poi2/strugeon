@@ -1,0 +1,2 @@
+module FrontRunnersHelper
+end
