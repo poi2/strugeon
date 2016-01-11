@@ -8,9 +8,15 @@ class FrontRunners::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    @front_runner = FrontRunner.new(front_runner_params)
+
+    if @front_runner.save
+      redirect_to front_runner_base_index_path, notice: 'Front runner was successfully created.'
+    else
+      render :new
+    end
+  end
 
   # GET /resource/edit
   # def edit
@@ -18,9 +24,13 @@ class FrontRunners::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    if @front_runner.update(front_runner_params)
+      redirect_to front_runner_base_index_path, notice: 'Front runner was successfully updated.'
+    else
+      render :edit
+    end
+  end
 
   # DELETE /resource
   # def destroy
@@ -57,4 +67,10 @@ class FrontRunners::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+  private
+    # Never trust parameters from the scary internet, only allow the white list through.
+    def front_runner_params
+      params.require(:front_runner).permit(:name, :email, :password, :password_confirmation, :description)
+    end
+
 end
