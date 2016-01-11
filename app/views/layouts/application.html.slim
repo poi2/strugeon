@@ -69,11 +69,9 @@ html lang="en"
       .row
         .col-lg-9
           - if notice.present?
-            .notice
-              = notice
+            div.alert.alert-dismissible.alert-success = notice
           - if alert.present?
-            .alert
-              = alert
+            div.alert.alert-dismissible.alert-danger = alert
           = bootstrap_flash
           = yield
         .col-lg-3
