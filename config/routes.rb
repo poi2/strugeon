@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :front_runners
+  devise_for :admin_users
+  devise_for :users
   resources :front_runners
   resources :orders
   resources :payments
