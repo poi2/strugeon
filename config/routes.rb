@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root :to => "deals#index", :via => :get
+
   namespace :user do
     get 'base/index'
   end
