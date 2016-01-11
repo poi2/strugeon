@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160111054510) do
+ActiveRecord::Schema.define(version: 20160111055436) do
+
+  create_table "admin_users", force: :cascade do |t|
+    t.string   "name",                   default: "",      null: false
+    t.string   "email",                  default: "",      null: false
+    t.string   "encrypted_password",     default: "",      null: false
+    t.string   "aasm_state"
+    t.string   "role",                   default: "admin", null: false
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,       null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true
+  add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
 
   create_table "carts", force: :cascade do |t|
     t.integer  "user_id",    null: false
@@ -52,6 +71,25 @@ ActiveRecord::Schema.define(version: 20160111054510) do
   add_index "deals", ["front_runner_id"], name: "index_deals_on_front_runner_id"
   add_index "deals", ["permalink"], name: "index_deals_on_permalink", unique: true
 
+  create_table "front_runners", force: :cascade do |t|
+    t.string   "name",                   default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "aasm_state"
+    t.text     "description"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "front_runners", ["email"], name: "index_front_runners_on_email", unique: true
+  add_index "front_runners", ["reset_password_token"], name: "index_front_runners_on_reset_password_token", unique: true
+
   create_table "inventories", force: :cascade do |t|
     t.integer  "deal_unit_id", null: false
     t.integer  "stock",        null: false
@@ -85,5 +123,23 @@ ActiveRecord::Schema.define(version: 20160111054510) do
   end
 
   add_index "payments", ["cart_id"], name: "index_payments_on_cart_id"
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name",                   default: "", null: false
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "aasm_state"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",          default: 0,  null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+  end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
 end
