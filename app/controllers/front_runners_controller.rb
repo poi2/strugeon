@@ -69,6 +69,6 @@ class FrontRunnersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def front_runner_params
-      params.require(:front_runner).permit(:name, :email, :password_digest, :description, :aasm_state)
+      params.require(:front_runner).permit(:name, :email, :password, :password_confirmation, :description)
     end
 end
