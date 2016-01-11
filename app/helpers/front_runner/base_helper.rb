@@ -1,0 +1,2 @@
+module FrontRunner::BaseHelper
+end

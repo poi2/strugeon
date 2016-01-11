@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :user do
+    get 'base/index'
+  end
+
+  namespace :admin_user do
+    get 'base/index'
+  end
+
+  namespace :front_runner do
+    get 'base/index'
+  end
+
   devise_for :users, controllers: {
     sessions:      'users/sessions',
     passwords:     'users/passwords',
