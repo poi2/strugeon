@@ -1,0 +1,29 @@
+h1 Listing front_runners
+
+table
+  thead
+    tr
+      th Name
+      th Email
+      th Password digest
+      th Description
+      th Aasm state
+      th
+      th
+      th
+
+  tbody
+    - @front_runners.each do |front_runner|
+      tr
+        td = front_runner.name
+        td = front_runner.email
+        td = front_runner.password_digest
+        td = front_runner.description
+        td = front_runner.aasm_state
+        td = link_to 'Show', front_runner
+        td = link_to 'Edit', edit_front_runner_path(front_runner)
+        td = link_to 'Destroy', front_runner, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Front runner', new_front_runner_path

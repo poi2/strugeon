@@ -1,0 +1,23 @@
+h1 Listing inventories
+
+table
+  thead
+    tr
+      th Deal unit
+      th Stock
+      th
+      th
+      th
+
+  tbody
+    - @inventories.each do |inventory|
+      tr
+        td = inventory.deal_unit_id
+        td = inventory.stock
+        td = link_to 'Show', inventory
+        td = link_to 'Edit', edit_inventory_path(inventory)
+        td = link_to 'Destroy', inventory, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Inventory', new_inventory_path

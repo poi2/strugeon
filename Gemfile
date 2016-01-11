@@ -43,6 +43,9 @@ gem 'less-rails'
 gem 'twitter-bootstrap3-rails'
 gem 'sprockets-rails', '2.3.3'
 
+# Gemfile
+gem 'aasm'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

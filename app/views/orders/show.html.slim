@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Cart:
+  = @order.cart_id
+p
+  strong Deal unit:
+  = @order.deal_unit_id
+p
+  strong Quantity:
+  = @order.quantity
+
+= link_to 'Edit', edit_order_path(@order)
+'|
+= link_to 'Back', orders_path

@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @front_runner.name
+p
+  strong Email:
+  = @front_runner.email
+p
+  strong Password digest:
+  = @front_runner.password_digest
+p
+  strong Description:
+  = @front_runner.description
+p
+  strong Aasm state:
+  = @front_runner.aasm_state
+
+= link_to 'Edit', edit_front_runner_path(@front_runner)
+'|
+= link_to 'Back', front_runners_path

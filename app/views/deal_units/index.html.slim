@@ -1,0 +1,29 @@
+h1 Listing deal_units
+
+table
+  thead
+    tr
+      th Deal
+      th Title
+      th Description
+      th Price
+      th Reward
+      th
+      th
+      th
+
+  tbody
+    - @deal_units.each do |deal_unit|
+      tr
+        td = deal_unit.deal_id
+        td = deal_unit.title
+        td = deal_unit.description
+        td = deal_unit.price
+        td = deal_unit.reward
+        td = link_to 'Show', deal_unit
+        td = link_to 'Edit', edit_deal_unit_path(deal_unit)
+        td = link_to 'Destroy', deal_unit, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Deal unit', new_deal_unit_path
