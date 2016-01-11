@@ -50,6 +50,15 @@ html lang="en"
               div.form-group
                 input.form-control type="text" placeholder="search"
               button.btn.btn-default type="submit" Submit
+            - if user_signed_in?
+              .navbar-brand = current_user.name
+            - if admin_user_signed_in?
+              .navbar-brand = current_admin_user.name
+            - if front_runner_signed_in?
+              .navbar-brand = current_front_runner.name
+              .navbar-brand
+                = link_to 'FrontRunner: logout', destroy_front_runner_session_path, method: :delete
+
           .nav-collapse.collapse.navbar-responsive-collapse
             ul.nav.navbar-nav
               li= link_to "Link 1", "/path1"
@@ -59,6 +68,12 @@ html lang="en"
     .container
       .row
         .col-lg-9
+          - if notice.present?
+            .notice
+              = notice
+          - if alert.present?
+            .alert
+              = alert
           = bootstrap_flash
           = yield
         .col-lg-3
