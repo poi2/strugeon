@@ -1,24 +1,32 @@
-= form_for @front_runner do |f|
-  - if @front_runner.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@front_runner.errors.count, "error")} prohibited this front_runner from being saved:"
-      ul
-        - @front_runner.errors.full_messages.each do |message|
-          li = message
+.well.bs-component
+  = form_for @front_runner, html: {class: "form-horizontal"} do |f|
+    - if @front_runner.errors.any?
+      #error_explanation
+        h2 = "#{pluralize(@front_runner.errors.count, "error")} prohibited this front_runner from being saved:"
+        ul
+          - @front_runner.errors.full_messages.each do |message|
+            li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.password_field :password
-  .field
-    = f.label :password_confirmation
-    = f.password_field :password_confirmation
-  .field
-    = f.label :description
-    = f.text_area :description
-  .actions = f.submit
+    .form-group.has-success
+      = f.label :name, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :name, class: "form-control", placeholder: "name"
+    .form-group.has-error
+      = f.label :email, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :email, class: "form-control", placeholder: "email"
+    .form-group.has-warning
+      = f.label :password, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.password_field :password, class: "form-control", placeholder: "password"
+    .form-group
+      = f.label :password_confirmation, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.password_field :password_confirmation, class: "form-control", placeholder: "password_confirmation"
+    .form-group
+      = f.label :description, class: "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_area :description, class: "form-control", placeholder: "description"
+    .form-group
+      .col-lg-10.col-lg-offset-2
+        .actions = f.submit "update", class: "btn btn-primary"
