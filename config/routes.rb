@@ -1,13 +1,41 @@
 Rails.application.routes.draw do
-  resources :front_runners
+  root :to => "deals#index", :via => :get
+
+  namespace :user do
+    get 'base/index'
+  end
+
+  namespace :admin_user do
+    get 'base/index'
+  end
+
+  namespace :front_runner do
+    get 'base/index'
+  end
+
+  devise_for :users, controllers: {
+    sessions:      'users/sessions',
+    passwords:     'users/passwords',
+    registrations: 'users/registrations'
+  }
+  devise_for :front_runners, controllers: {
+    sessions:      'front_runners/sessions',
+    passwords:     'front_runners/passwords',
+    registrations: 'front_runners/registrations'
+  }
+  devise_for :admin_users, controllers: {
+    sessions:      'admin_users/sessions',
+    passwords:     'admin_users/passwords',
+    registrations: 'admin_users/registrations'
+  }
+
   resources :orders
   resources :payments
   resources :carts
   resources :inventories
   resources :deal_units
   resources :deals
-  resources :admin_users
-  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

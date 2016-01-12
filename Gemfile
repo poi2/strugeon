@@ -26,7 +26,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
@@ -43,8 +43,13 @@ gem 'less-rails'
 gem 'twitter-bootstrap3-rails'
 gem 'sprockets-rails', '2.3.3'
 
-# Gemfile
+# state matchine
 gem 'aasm'
+
+# User Authorization
+gem 'devise'
+gem 'cancancan'
+gem 'enum_help'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
