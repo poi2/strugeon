@@ -7,15 +7,15 @@
           - @front_runner.errors.full_messages.each do |message|
             li = message
 
-    .form-group
+    .form-group.has-success
       = f.label :name, class: "col-lg-2 control-label"
       .col-lg-10
         = f.text_field :name, class: "form-control", placeholder: "name"
-    .form-group
+    .form-group.has-error
       = f.label :email, class: "col-lg-2 control-label"
       .col-lg-10
         = f.text_field :email, class: "form-control", placeholder: "email"
-    .form-group
+    .form-group.has-warning
       = f.label :password, class: "col-lg-2 control-label"
       .col-lg-10
         = f.password_field :password, class: "form-control", placeholder: "password"

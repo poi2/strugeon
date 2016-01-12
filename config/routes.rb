@@ -28,7 +28,7 @@ Rails.application.routes.draw do
     passwords:     'admin_users/passwords',
     registrations: 'admin_users/registrations'
   }
-
+  resources :front_runners
   resources :orders
   resources :payments
   resources :carts
