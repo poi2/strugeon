@@ -1,6 +1,6 @@
 h1 Listing front_runners
 
-table
+table.table.table-striped.table-hover
   thead
     tr
       th Name
@@ -18,9 +18,9 @@ table
         td = front_runner.email
         td = front_runner.description
         td = front_runner.aasm_state
-        td = link_to 'Show', front_runner
-        td = link_to 'Edit', edit_front_runner_path(front_runner)
-        td = link_to 'Destroy', front_runner, data: {:confirm => 'Are you sure?'}, :method => :delete
+        td = link_to 'Show', front_runner, class: "btn btn-info"
+        td = link_to 'Edit', edit_front_runner_path(front_runner), class: "btn btn-info"
+        td = link_to 'Destroy', front_runner, data: {:confirm => 'Are you sure?'}, :method => :delete, class: "btn btn-success"
 
 br
 
